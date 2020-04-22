@@ -32,7 +32,6 @@ app.get("/books/create", (req, res) => {
 });
 
 app.post("/books/create", (req, res) => {
-  console.log(req.body);
   var title = req.body.title;
   var description = req.body.description;
   db.get('books').push({
@@ -43,7 +42,15 @@ app.post("/books/create", (req, res) => {
   res.redirect('/books');
 });
 
-app.get("/books/:id/delete") 
+app.get("/books/:id/delete", (req, res) => {
+  var id = req.params.id;
+  db.get('books').remove({ id: parseInt(id) }).write();
+  res.redirect('/books');
+}) 
+
+app.get("/books/:id/update", (req, res) => {
+  res.render('')
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
