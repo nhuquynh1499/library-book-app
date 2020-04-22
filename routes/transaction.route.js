@@ -4,46 +4,45 @@ const db = require('../db');
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  // express helps us take JS objects and send them as JSON
-  res.render('users/index', {
-    users: db.get('users').value()
+  res.render('transactions/index', {
+    transactions: db.get('transactions').value()
   })
 });
 
 router.get("/create", (req, res) => {
-  res.render('users/create');
+  res.render('transactions/create');
 });
 
 router.post("/create", (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone
-  db.get('users').push({
-    id: db.get('users').value().length,
+  db.get('transactions').push({
+    id: db.get('transactions').value().length,
     name: name,
     phone: phone
   }).write()
-  res.redirect('/users');
+  res.redirect('/transactions');
 });
 
 router.get("/:id/delete", (req, res) => {
   var id = req.params.id;
-  db.get('users').remove({ id: parseInt(id) }).write();
-  res.redirect('/users');
+  db.get('transactions').remove({ id: parseInt(id) }).write();
+  res.redirect('/transactions');
 }) 
 
 router.get("/:id/update", (req, res) => {
-  var user = db.get('users').find({ id: parseInt(req.params.id)}).value();
-  res.render('users/update', {
+  var user = db.get('transactions').find({ id: parseInt(req.params.id)}).value();
+  res.render('transactions/update', {
     user: user
   })
 })
 
 router.post("/:id/update", (req, res) => {
-  db.get('users')
+  db.get('transactions')
   .find({ id: parseInt(req.params.id) })
   .assign({ phone: req.body.phone })
   .write();
-  res.redirect('/users');
+  res.redirect('/transactions');
 })
 
 

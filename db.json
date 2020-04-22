@@ -22,5 +22,12 @@
       "name": "Ngo Minh",
       "phone": "0123123123"
     }
+  ],
+  "transactions": [
+    {
+      "id": 0,
+      "userId": 0,
+      "bookId": 2
+    }
   ]
 }

@@ -18,7 +18,7 @@ app.set('view engine', 'pug');
 // send the default array of dreams to the webpage
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
-app.use('/transaction', transactionRoute);
+app.use('/transactions', transactionRoute);
 
 
 // listen for requests :)
