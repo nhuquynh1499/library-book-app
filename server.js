@@ -12,6 +12,8 @@ const app = express();
 // make all the files in 'public' available
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static("public"));
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true }));
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -30,9 +32,14 @@ app.get("/books/create", (req, res) => {
 });
 
 app.post("/books/create", (req, res) => {
+  console.log(req.body);
   var title = req.body.title;
   var description = req.body.description;
-  db.get('books').
+  db.get('books').push({
+    id: db.get('books').value().length,
+    title: title,
+    description: description
+  }).write()
   res.redirect('/books');
 });
 
