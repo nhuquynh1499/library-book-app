@@ -49,7 +49,18 @@ app.get("/books/:id/delete", (req, res) => {
 }) 
 
 app.get("/books/:id/update", (req, res) => {
-  res.render('')
+  var book = db.get('books').find({ id: parseInt(req.params.id)}).value();
+  res.render('update', {
+    book: book
+  })
+})
+
+app.post("/books/:id/update", (req, res) => {
+  db.get('books')
+  .find({ id: parseInt(req.params.id) })
+  .assign({ title: req.body.title })
+  .write();
+  res.redirect('/books');
 })
 
 // listen for requests :)
