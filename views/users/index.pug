@@ -1,0 +1,19 @@
+h1 User list
+
+
+table
+  tr
+    th Name
+    th Phone
+    th
+    th
+  each user in users
+    tr
+      td= user.name
+      td= user.phone
+      td 
+        a(href="/users/" + user.id + "/delete") Delete
+      td 
+        a(href="/users/" + user.id + "/update") Update
+      
+a(href="/users/create") New
