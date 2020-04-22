@@ -28,26 +28,6 @@
       "id": 0,
       "userId": 0,
       "bookId": 2
-    },
-    {
-      "id": 1,
-      "user": "Ngo Minh",
-      "book": "Harry Potter"
-    },
-    {
-      "id": 2,
-      "user": "Ngo Minh",
-      "book": "Harry Potter"
-    },
-    {
-      "id": 3,
-      "userId": 0,
-      "bookId": 0
-    },
-    {
-      "id": 4,
-      "userId": 0,
-      "bookId": 1
     }
   ]
 }

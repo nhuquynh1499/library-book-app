@@ -7,11 +7,15 @@ router.get("/", (req, res) => {
   var transactions = db.get('transactions').value();
   var lists = [];
   for (var item of transactions) {
+    var userId = item.userId;
+    var bookId = item.bookId;
+    console.log(db.get('users').find({ id: userId }).value().name)
     lists.push({
-      user: db.get('users').find({ id: item.userId }).value().name,
-      book: db.get('books').find({ id: item.bookId }).value().title
+      user: db.get('users').find({ id: userId }).value().name,
+      book: db.get('books').find({ id: bookId }).value().title
     })
   }
+  console.log(lists);
   res.render('transactions/index', {
     transactions: lists
   })
