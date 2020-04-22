@@ -23,8 +23,8 @@ router.post("/create", (req, res) => {
   console.log(req.body.userSelect, req.body.bookSelect);
   db.get('transactions').push({
     id: db.get('transactions').value().length,
-    user: user,
-    book: book
+    userId: db.get('users').find({ name: user }).value().id,
+    bookId: db.get('books').find({ title: book }).value().id
   }).write()
   res.redirect('/transactions');
 });
