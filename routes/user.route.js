@@ -5,13 +5,13 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   // express helps us take JS objects and send them as JSON
-  res.render('index', {
-    books: db.get('books').value()
+  res.render('books/index', {
+    user: db.get('user').value()
   })
 });
 
 router.get("/create", (req, res) => {
-  res.render('create');
+  res.render('books/create');
 });
 
 router.post("/create", (req, res) => {
@@ -33,7 +33,7 @@ router.get("/:id/delete", (req, res) => {
 
 router.get("/:id/update", (req, res) => {
   var book = db.get('books').find({ id: parseInt(req.params.id)}).value();
-  res.render('update', {
+  res.render('books/update', {
     book: book
   })
 })
@@ -46,5 +46,6 @@ router.post("/:id/update", (req, res) => {
   .write();
   res.redirect('/books');
 })
+
 
 module.exports = router;
