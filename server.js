@@ -5,6 +5,8 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
+db.defaults({ books: [] }).write();
+
 const app = express();
 
 // make all the files in 'public' available
@@ -16,9 +18,11 @@ app.set('view engine', 'pug');
 
 // https://expressjs.com/en/starter/basic-routing.html
 // send the default array of dreams to the webpage
-app.get("/books", (request, response) => {
+app.get("/books", (req, res) => {
   // express helps us take JS objects and send them as JSON
-  
+  res.render('index', {
+    books: db.get('books').value()
+  })
 });
 
 // listen for requests :)

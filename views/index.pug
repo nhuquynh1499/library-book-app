@@ -1,9 +1,15 @@
-{
-  "books": [
-    { 
-      "id": 1, 
-      "title": "Harry Potter",
+h1 Book list
+
+
+table
+  tr
+    th Title
+    th Description
+    th
+  each book in books
+    tr
+      td= book.title
+      td= book.description
+      td 
       
-    }
-  ]
-}
+a(href="/books/create") New
