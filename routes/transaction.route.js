@@ -10,7 +10,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/create", (req, res) => {
-  res.render('transactions/create');
+  res.render('transactions/create', {
+    users: db.get('users').value(),
+    books: db.get('books').value()
+  });
 });
 
 router.post("/create", (req, res) => {

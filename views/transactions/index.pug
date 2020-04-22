@@ -1,0 +1,18 @@
+h1 Transaction list
+
+table
+  tr
+    th User borrow
+    th Book
+    th
+    th
+  each transaction in transactions
+    tr
+      td= transaction.userId
+      td= transaction.bookId
+      td 
+        a(href="/transactions/" + transaction "/delete") Delete
+      td 
+        a(href="/transactions/" + transaction "/update") Update
+      
+a(href="/transactions/create") New
