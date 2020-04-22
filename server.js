@@ -1,4 +1,5 @@
 const express = require("express");
+const bookRoute = require("./routes/books.route")
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.set('view engine', 'pug');
 
 // https://expressjs.com/en/starter/basic-routing.html
 // send the default array of dreams to the webpage
+app.use('/books', bookRoute);
 
 
 // listen for requests :)
