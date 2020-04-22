@@ -1,9 +1,12 @@
 h1 Update a book
 
-form(method="POST", action="/books/" + id + "/update")
+form(method="POST", action="/books/" + book.id + "/update")
   div
-    label(for="title") Title: 
-    input(type="text", name="title", value=book.title)
+    span Title: 
+    span= book.title
+  div
+    label(for="title") New title: 
+    input(type="text", name="title")
   div
     label(for="description") Description: 
     span= book.description
