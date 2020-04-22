@@ -17,36 +17,17 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  var name = req.body.name;
-  var phone = req.body.phone
+  var user = req.body.userSelect;
+  var book = req.body.bookSelect;
+  console.log(user, book);
+  console.log(req.body.userSelect, req.body.bookSelect);
   db.get('transactions').push({
     id: db.get('transactions').value().length,
-    name: name,
-    phone: phone
+    user: user,
+    book: book
   }).write()
   res.redirect('/transactions');
 });
-
-router.get("/:id/delete", (req, res) => {
-  var id = req.params.id;
-  db.get('transactions').remove({ id: parseInt(id) }).write();
-  res.redirect('/transactions');
-}) 
-
-router.get("/:id/update", (req, res) => {
-  var user = db.get('transactions').find({ id: parseInt(req.params.id)}).value();
-  res.render('transactions/update', {
-    user: user
-  })
-})
-
-router.post("/:id/update", (req, res) => {
-  db.get('transactions')
-  .find({ id: parseInt(req.params.id) })
-  .assign({ phone: req.body.phone })
-  .write();
-  res.redirect('/transactions');
-})
 
 
 module.exports = router;
