@@ -16,5 +16,11 @@
       "description": "Your Name tells the story of Taki, a high school boy in Tokyo and Mitsuha, a high school girl in a rural town, who suddenly and inexplicably begin to swap bodies."
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": 0,
+      "name": "Ngo Minh",
+      "phone": "0123123123"
+    }
+  ]
 }
