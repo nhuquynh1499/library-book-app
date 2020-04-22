@@ -4,8 +4,16 @@ const db = require('../db');
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  var transactions = db.get('transactions').value();
+  var lists = [];
+  for (var item of transactions) {
+    lists.push({
+      user: db.get('users').find({ id: item.userId }).value().name,
+      book: db.get('books').find({ id: item.bookId }).value().title
+    })
+  }
   res.render('transactions/index', {
-    transactions: db.get('transactions').value()
+    transactions: lists
   })
 });
 

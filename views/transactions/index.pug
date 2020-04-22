@@ -8,8 +8,8 @@ table
     th
   each transaction in transactions
     tr
-      td= transaction.userId
-      td= transaction.bookId
+      td= transaction.user
+      td= transaction.book
       td 
         a(href="/transactions/" + transaction "/delete") Delete
       td 
