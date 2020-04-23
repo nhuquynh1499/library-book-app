@@ -39,12 +39,10 @@ module.exports.postCreate = (req, res) => {
   res.redirect('/transactions');
 };
 
-module.exports.complete = (req, res) => {
-  if (db.get('transactions').find({ id: parseInt(req.params.id) }).value()) {
+module.exports.complete = (req, res) => { 
     db.get('transactions')
     .find({ id: parseInt(req.params.id) })
     .assign({ isComplete: true })
     .write();
-  }
   res.redirect('/transactions');
 };
