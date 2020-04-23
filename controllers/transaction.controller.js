@@ -7,8 +7,10 @@ module.exports.index = (req, res) => {
     var userId = item.userId;
     var bookId = item.bookId;
     lists.push({
+      id: item.id,
       user: db.get('users').find({ id: userId }).value().name,
-      book: db.get('books').find({ id: bookId }).value().title
+      book: db.get('books').find({ id: bookId }).value().title,
+      isComplete: item.isComplete
     })
   }
   res.render('transactions/index', {
@@ -33,5 +35,11 @@ module.exports.postCreate = (req, res) => {
     userId: db.get('users').find({ name: user }).value().id,
     bookId: db.get('books').find({ title: book }).value().id
   }).write()
+  res.redirect('/transactions');
+};
+
+module.exports.complete = (req, res) => {
+  var id = req.params.id;
+  db.get('transactions').remove({ id: parseInt(id) }).write();
   res.redirect('/transactions');
 };

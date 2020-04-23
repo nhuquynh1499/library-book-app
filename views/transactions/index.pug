@@ -10,8 +10,9 @@ table
     tr
       td= transaction.user
       td= transaction.book
-      //td 
-        a(href="/transactions/" + transaction "/delete") Delete
+      if (transaction.isComplete == false)
+      td 
+        a(href="/transactions/" + transaction.id "/complete") Trả sách nè
       //td 
         a(href="/transactions/" + transaction "/update") Update
       
