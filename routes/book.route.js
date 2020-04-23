@@ -1,50 +1,18 @@
 const express = require('express');
-const db = require('../db');
+const controller = require('../controllers/book.controller');
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  // express helps us take JS objects and send them as JSON
-  res.render('books/index', {
-    books: db.get('books').value()
-  })
-});
+router.get("/", controller.index);
 
-router.get("/create", (req, res) => {
-  res.render('books/create');
-});
+router.get("/create", controller.create);
 
-router.post("/create", (req, res) => {
-  var title = req.body.title;
-  var description = req.body.description;
-  db.get('books').push({
-    id: db.get('books').value().length,
-    title: title,
-    description: description
-  }).write()
-  res.redirect('/books');
-});
+router.post("/create", controller.postCreate);
 
-router.get("/:id/delete", (req, res) => {
-  var id = req.params.id;
-  db.get('books').remove({ id: parseInt(id) }).write();
-  res.redirect('/books');
-}) 
+router.get("/:id/delete", controller.delete);
 
-router.get("/:id/update", (req, res) => {
-  var book = db.get('books').find({ id: parseInt(req.params.id)}).value();
-  res.render('books/update', {
-    book: book
-  })
-})
+router.get("/:id/update", controller.update);
 
-router.post("/:id/update", (req, res) => {
-   console.log(req.params);
-  db.get('books')
-  .find({ id: parseInt(req.params.id) })
-  .assign({ title: req.body.title })
-  .write();
-  res.redirect('/books');
-})
+router.post("/:id/update", controller.postUpdate);
 
 module.exports = router;
