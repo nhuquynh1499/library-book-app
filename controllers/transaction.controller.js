@@ -33,13 +33,16 @@ module.exports.postCreate = (req, res) => {
   db.get('transactions').push({
     id: db.get('transactions').value().length,
     userId: db.get('users').find({ name: user }).value().id,
-    bookId: db.get('books').find({ title: book }).value().id
+    bookId: db.get('books').find({ title: book }).value().id,
+    isComplete: false
   }).write()
   res.redirect('/transactions');
 };
 
 module.exports.complete = (req, res) => {
-  var id = req.params.id;
-  db.get('transactions').remove({ id: parseInt(id) }).write();
+  db.get('transactions')
+  .find({ id: parseInt(req.params.id) })
+  .assign({ isComplete: true })
+  .write();
   res.redirect('/transactions');
 };

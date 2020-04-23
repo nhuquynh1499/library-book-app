@@ -16,6 +16,9 @@ app.set('view engine', 'pug');
 
 // https://expressjs.com/en/starter/basic-routing.html
 // send the default array of dreams to the webpage
+app.use('/', (req, res) => {
+  res.render('index');
+})
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
 app.use('/transactions', transactionRoute);

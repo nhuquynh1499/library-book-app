@@ -1,10 +1,13 @@
-h1 Update a user
+extends ../layouts/common.pug
 
-form(method="POST", action="/users/" + user.id + "/update")
-  div
-    span Name: 
-    span= user.name
-  div
-    label(for="phone") Phone: 
-    input(type="text", name="phone")
-  button Update
+block content
+  h1 Update a user
+
+  form(method="POST", action="/users/" + user.id + "/update")
+    div
+      span Name: 
+      span= user.name
+    div
+      label(for="phone") Phone: 
+      input(type="text", name="phone")
+    button Update

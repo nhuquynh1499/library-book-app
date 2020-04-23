@@ -1,19 +1,22 @@
-h1 Transaction list
+extends ../layouts/common.pug
 
-table
-  tr
-    th User borrow
-    th Book
-    th
-    th
-  each transaction in transactions
+block content
+  h1 Transaction list
+
+  table
     tr
-      td= transaction.user
-      td= transaction.book
-      if (transaction.isComplete == false)
-      td 
-        a(href="/transactions/" + transaction.id "/complete") Trả sách nè
-      //td 
-        a(href="/transactions/" + transaction "/update") Update
-      
-a(href="/transactions/create") New
+      th User borrow
+      th Book
+      th
+      th
+    each transaction in transactions
+      tr
+        td= transaction.user
+        td= transaction.book
+        if (transaction.isComplete == false)
+          td 
+            a(href="/transactions/" + transaction.id + "/complete") Trả sách nè
+        //td 
+          a(href="/transactions/" + transaction "/update") Update
+
+  a(href="/transactions/create") New

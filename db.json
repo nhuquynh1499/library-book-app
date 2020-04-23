@@ -21,6 +21,11 @@
       "id": 0,
       "name": "Ngo Minh",
       "phone": "0123123123"
+    },
+    {
+      "id": 1,
+      "name": "Thinh Pham",
+      "phone": "4305854943"
     }
   ],
   "transactions": [
@@ -28,6 +33,12 @@
       "id": 0,
       "userId": 0,
       "bookId": 2,
+      "isComplete": true
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "bookId": 1,
       "isComplete": false
     }
   ]

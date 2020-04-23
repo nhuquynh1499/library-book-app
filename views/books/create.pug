@@ -1,10 +1,14 @@
-h1 Create a book
+extends ../layouts/common.pug
 
-form(method="POST", action="/books/create")
-  div
-    label(for="title") Title: 
-    input(type="text", name="title")
-  div
-    label(for="description") Description: 
-    input(type="text", name="description")
-  button Create
+block content
+
+  h1 Create a book
+
+  form(method="POST", action="/books/create")
+    div
+      label(for="title") Title: 
+      input(type="text", name="title")
+    div
+      label(for="description") Description: 
+      input(type="text", name="description")
+    button Create

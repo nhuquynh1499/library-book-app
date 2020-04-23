@@ -35,7 +35,6 @@ module.exports.update = (req, res) => {
 }
 
 module.exports.postUpdate = (req, res) => {
-   console.log(req.params);
   db.get('books')
   .find({ id: parseInt(req.params.id) })
   .assign({ title: req.body.title })

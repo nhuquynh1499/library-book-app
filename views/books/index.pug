@@ -1,19 +1,23 @@
-h1 Book list
+extends ../layouts/common.pug
+
+block content
+
+  h1 Book list
 
 
-table
-  tr
-    th Title
-    th Description
-    th
-    th
-  each book in books
+  table
     tr
-      td= book.title
-      td= book.description
-      td 
-        a(href="/books/" + book.id + "/delete") Delete
-      td 
-        a(href="/books/" + book.id + "/update") Update
-      
-a(href="/books/create") New
+      th Title
+      th Description
+      th
+      th
+    each book in books
+      tr
+        td= book.title
+        td= book.description
+        td 
+          a(href="/books/" + book.id + "/delete") Delete
+        td 
+          a(href="/books/" + book.id + "/update") Update
+
+  a(href="/books/create") New
