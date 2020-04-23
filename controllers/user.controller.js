@@ -40,4 +40,4 @@ module.exports.postUpdate = (req, res) => {
   .assign({ phone: req.body.phone })
   .write();
   res.redirect('/users');
-})
+}
