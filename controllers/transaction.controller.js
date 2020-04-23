@@ -40,9 +40,11 @@ module.exports.postCreate = (req, res) => {
 };
 
 module.exports.complete = (req, res) => {
-  db.get('transactions')
-  .find({ id: parseInt(req.params.id) })
-  .assign({ isComplete: true })
-  .write();
+  if (db.get('transactions').find({ id: parseInt(req.params.id) }).value()) {
+    db.get('transactions')
+    .find({ id: parseInt(req.params.id) })
+    .assign({ isComplete: true })
+    .write();
+  }
   res.redirect('/transactions');
 };

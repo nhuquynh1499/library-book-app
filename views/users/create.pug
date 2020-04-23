@@ -2,7 +2,10 @@ extends ../layouts/common.pug
 
 block content
   h1 Create a user
-
+  
+  if error
+    .alert.alert-danger= error
+  
   form(method="POST", action="/users/create")
     .form-group
       label(for="name") Name: 
