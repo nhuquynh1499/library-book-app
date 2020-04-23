@@ -4,11 +4,14 @@ block content
   h1 Create a transaction
 
   form(method="POST", action="")
-    .form-
-    select(name="userSelect")
-      each user in users
-        option= user.name
-    select(name="bookSelect")
-      each book in books
-        option= book.title
+    .form-group
+      label(for="userSelect") User borrow
+      select.form-control(name="userSelect")
+        each user in users
+          option= user.name
+    .form-group
+      label(for="bookSelect") Book
+      select.form-control(name="bookSelect", multiple)
+        each book in books
+          option= book.title
     button Create

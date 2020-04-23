@@ -4,10 +4,10 @@ block content
   h1 Create a user
 
   form(method="POST", action="/users/create")
-    div
+    .form-group
       label(for="name") Name: 
-      input(type="text", name="name")
-    div
+      input.form-control(type="text", name="name")
+    .form-group
       label(for="phone") Phone: 
-      input(type="text", name="phone")
-    button Create
+      input.form-control(type="text", name="phone")
+    button.btn.btn-primary Create
