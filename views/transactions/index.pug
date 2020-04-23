@@ -3,7 +3,7 @@ extends ../layouts/common.pug
 block content
   h1 Transaction list
 
-  table
+  table.table
     tr
       th User borrow
       th Book
@@ -16,6 +16,8 @@ block content
         if (transaction.isComplete == false)
           td 
             a(href="/transactions/" + transaction.id + "/complete") Trả sách nè
+        else 
+          td Đã trả rồi nhé, bớt đòi
         //td 
           a(href="/transactions/" + transaction "/update") Update
 
