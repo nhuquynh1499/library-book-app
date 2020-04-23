@@ -1,5 +1,4 @@
 const express = require("express");
-const favicon = require('express-favicon');
 const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
@@ -11,8 +10,6 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
-
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.set('views', './views');
 app.set('view engine', 'pug');
