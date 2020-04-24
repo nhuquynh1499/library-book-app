@@ -3,7 +3,6 @@ const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
 const middlewareTransaction = require("./middlewares/transaction.middleware");
-const middlewareCount = require("./middlewares/countCookie.middleware");
 const cookieParser = require('cookie-parser');
 
 
@@ -19,14 +18,24 @@ app.use(cookieParser());
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-// https://expressjs.com/en/starter/basic-routing.html
-// send the default array of dreams to the webpage
-app.get('/', middlewareCount.countCookie, (req, res) => {
+app.use((req, res, next) => {
+  if(!req.cookies.count) {
+    res.cookie('count', 1);
+  } else {
+    var count = req.cookies.count;
+    count++;  
+    res.cookie('count', count);
+  }
+  console.log(req.cookies.count);
+  next();
+});
+
+app.get('/', (req, res) => {
   res.render('index');
 })
-app.use('/books', middlewareCount.countCookie, bookRoute);
-app.use('/users', middlewareCount.countCookie, userRoute);
-app.use('/transactions', middlewareCount.countCookie, middlewareTransaction.complete, transactionRoute);
+app.use('/books', bookRoute);
+app.use('/users', userRoute);
+app.use('/transactions', middlewareTransaction.complete, transactionRoute);
 
 
 // listen for requests :)
