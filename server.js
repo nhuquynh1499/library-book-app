@@ -3,6 +3,7 @@ const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
 const middlewareTransaction = require("./middlewares/transaction.middleware");
+const middlewareCount = require("./middlewares/countCookie.middleware");
 
 const app = express();
 
@@ -17,8 +18,10 @@ app.set('view engine', 'pug');
 
 // https://expressjs.com/en/starter/basic-routing.html
 // send the default array of dreams to the webpage
-app.get('/', (req, res) => {
+app.get('/', middlewareCount.countCookie, (req, res) => {
+  console.log(req.cookie);
   res.render('index');
+  
 })
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
