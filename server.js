@@ -22,13 +22,11 @@ app.set('view engine', 'pug');
 // https://expressjs.com/en/starter/basic-routing.html
 // send the default array of dreams to the webpage
 app.get('/', middlewareCount.countCookie, (req, res) => {
-  console.log(req.cookie);
   res.render('index');
-  
 })
-app.use('/books', bookRoute);
-app.use('/users', userRoute);
-app.use('/transactions', middlewareTransaction.complete, transactionRoute);
+app.use('/books', middlewareCount.countCookie, bookRoute);
+app.use('/users', middlewareCount.countCookie, userRoute);
+app.use('/transactions', middlewareCount.countCookie, middlewareTransaction.complete, transactionRoute);
 
 
 // listen for requests :)
