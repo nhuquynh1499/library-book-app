@@ -1,4 +1,3 @@
-const cookieParser = require('cookie-parser');
 
 module.exports.countCookie = (req, res, next) => {
   if (!req.cookies) {
