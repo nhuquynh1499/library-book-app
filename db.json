@@ -20,12 +20,16 @@
     {
       "id": 0,
       "name": "Ngo Minh",
-      "phone": "0123123123"
+      "phone": "0123123123",
+      "email": "ngo.minh@coders-x.com",
+      "password": "123123"
     },
     {
       "id": 1,
       "name": "Thinh Pham",
-      "phone": "4305854943"
+      "phone": "4305854943",
+      "email": "pham.thinh@coders-x.com",
+      "password": "123123"
     }
   ],
   "transactions": [
