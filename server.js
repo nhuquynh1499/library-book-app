@@ -2,6 +2,7 @@ const express = require("express");
 const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
+const authRoute = require("./routes/auth.route");
 const middlewareTransaction = require("./middlewares/transaction.middleware");
 const cookieParser = require('cookie-parser');
 
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
 app.use('/books', bookRoute);
 app.use('/users', userRoute);
 app.use('/transactions', middlewareTransaction.complete, transactionRoute);
+app.use('/auth', authRoute);
 
 
 // listen for requests :)

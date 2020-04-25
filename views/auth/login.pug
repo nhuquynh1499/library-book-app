@@ -1,0 +1,14 @@
+extends ../layouts/common.pug
+
+block content
+
+  h1 Login
+
+  form(method="POST", action="/auth/login")
+    .form-group
+      label(for="email") Email: 
+      input.form-control(type="text", name="email")
+    .form-group
+      label(for="password") Password: 
+      input.form-control(type="password", name="password")
+    button.btn.btn-primary Login
