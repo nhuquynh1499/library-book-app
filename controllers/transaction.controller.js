@@ -1,7 +1,12 @@
 const db = require('../db');
 
 module.exports.index = (req, res) => {
-  var transactions = db.get('transactions').value();
+  var user = db.get('users').find({id: req.cookies.userId}).value();
+  if (user.isAdmin) {
+    var transactions = db.get('transactions').value();
+  } else {
+    var transactions = db.get('transactions').find({ userId: user.id }).value();
+  }
   var lists = [];
   for (var item of transactions) {
     var userId = item.userId;
@@ -13,6 +18,7 @@ module.exports.index = (req, res) => {
       isComplete: item.isComplete
     })
   }
+  
   res.render('transactions/index', {
     transactions: lists
   })

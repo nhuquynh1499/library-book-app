@@ -12,5 +12,4 @@ module.exports.requireAuth = (req, res, next) => {
     return;
   }
   
-  next();
 }
