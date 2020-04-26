@@ -29,7 +29,7 @@ module.exports.postLogin = (req, res, next) => {
     return;
   }
   
-  res.local.user = user;
+  res.cookie('userId')
   
   res.redirect('/transactions');
 }
