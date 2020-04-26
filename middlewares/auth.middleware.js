@@ -1,6 +1,7 @@
 const db = require('../db');
 
 module.exports.requireAuth = (req, res, next) => {
+  console.log(req.cookies.userId);
   if (!req.cookies.userId) {
     res.render('auth/login');
     return;
@@ -12,4 +13,6 @@ module.exports.requireAuth = (req, res, next) => {
     return;
   }
   
+  next();
+  console.log(2)
 }

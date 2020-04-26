@@ -32,7 +32,5 @@ module.exports.postLogin = (req, res, next) => {
   console.log(user.id)
   res.cookie('userId', user.id);
   
-  console.log(req.cookies.userId);
-  
   res.redirect('/transactions');
 }
