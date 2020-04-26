@@ -30,6 +30,13 @@
       "phone": "4305854943",
       "email": "pham.thinh@coders-x.com",
       "password": "123123"
+    },
+    {
+      "id": 2,
+      "name": "Nhu Quynh",
+      "phone": "05305854943",
+      "email": "ngngocnhuquynh0104@gmail.com",
+      "password": "123123"
     }
   ],
   "transactions": [

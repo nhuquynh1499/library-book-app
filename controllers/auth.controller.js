@@ -29,7 +29,7 @@ module.exports.postLogin = (req, res, next) => {
     return;
   }
   
-  res.cookie('userId')
+  res.cookie('userId', user.id);
   
   res.redirect('/transactions');
 }
