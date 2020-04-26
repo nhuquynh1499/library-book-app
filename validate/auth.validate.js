@@ -10,7 +10,8 @@ module.exports.authLogin = (req, res, next) => {
   
   if (errors.length) {
     res.render('/auth/login', {
-      
+      errors: errors,
+      value: req.body
     })
   }
 }
