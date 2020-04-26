@@ -1,4 +1,4 @@
-module.exports.authLogin = (req, res, next) => {
+module.exports.login = (req, res, next) => {
   var errors = [];
   if (!req.body.email) {
     errors.push("Email is required");
@@ -9,9 +9,12 @@ module.exports.authLogin = (req, res, next) => {
   }
   
   if (errors.length) {
-    res.render('/auth/login', {
+    res.render('auth/login', {
       errors: errors,
-      value: req.body
+      values: req.body
     })
+    return;
   }
+  
+  next();
 }
