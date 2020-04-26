@@ -7,6 +7,7 @@ module.exports.login = (req, res) => {
 module.exports.postLogin = (req, res, next) => {
   var email = req.body.email;
   var password = req.body.password;
+  console.log(email,password)
   var user = db.get('users').find({email: email}).value();
   
   if (!user) {
@@ -28,8 +29,10 @@ module.exports.postLogin = (req, res, next) => {
     })
     return;
   }
-  
+  console.log(user.id)
   res.cookie('userId', user.id);
+  
+  console.log(req.cookies.userId);
   
   res.redirect('/transactions');
 }

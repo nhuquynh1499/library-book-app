@@ -20,17 +20,17 @@ app.use(cookieParser());
 app.set('views', './views');
 app.set('view engine', 'pug');
 
-app.use((req, res, next) => {
-  if(!req.cookies.count) {
-    res.cookie('count', 1);
-  } else {
-    var count = req.cookies.count;
-    count++;  
-    res.cookie('count', count);
-  }
-  console.log(req.cookies.count);
-  next();
-});
+// app.use((req, res, next) => {
+//   if(!req.cookies.count) {
+//     res.cookie('count', 1);
+//   } else {
+//     var count = req.cookies.count;
+//     count++;  
+//     res.cookie('count', count);
+//   }
+//   console.log(req.cookies.count);
+//   next();
+// });
 
 app.get('/', (req, res) => {
   res.render('index');
