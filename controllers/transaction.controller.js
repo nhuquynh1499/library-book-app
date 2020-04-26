@@ -1,7 +1,7 @@
 const db = require('../db');
 
 module.exports.index = (req, res) => {
-  var user = db.get('users').find({id: req.cookies.userId}).value();
+  var user = db.get('users').find({id: parseInt(req.cookies.userId)}).value();
   if (user.isAdmin) {
     var transactions = db.get('transactions').value();
   } else {

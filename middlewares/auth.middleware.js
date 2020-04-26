@@ -7,12 +7,12 @@ module.exports.requireAuth = (req, res, next) => {
     return;
   }
   
-  var user = db.get('users').find({ id: req.cookies.userId }).value();
+  var user = db.get('users').find({ id: parseInt(req.cookies.userId) }).value();
+  console.log(user);
   if (!user) {
     res.render('auth/login');
     return;
   }
   
   next();
-  console.log(2)
 }
