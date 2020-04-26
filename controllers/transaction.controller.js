@@ -2,10 +2,11 @@ const db = require('../db');
 
 module.exports.index = (req, res) => {
   var user = db.get('users').find({id: parseInt(req.cookies.userId)}).value();
+  var transactions = []
   if (user.isAdmin) {
-    var transactions = db.get('transactions').value();
+     transactions = db.get('transactions').value();
   } else {
-    var transactions = db.get('transactions').find({ userId: user.id }).value();
+     transactions = transactions.concat(db.get('transactions').find({ userId: user.id }).value());
   }
   var lists = [];
   for (var item of transactions) {
