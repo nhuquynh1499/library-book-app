@@ -22,21 +22,24 @@
       "name": "Ngo Minh",
       "phone": "0123123123",
       "email": "ngo.minh@coders-x.com",
-      "password": "123123"
+      "password": "123123",
+      "isAdmin": false
     },
     {
       "id": 1,
       "name": "Thinh Pham",
       "phone": "4305854943",
       "email": "pham.thinh@coders-x.com",
-      "password": "123123"
+      "password": "123123",
+      "isAdmin": false
     },
     {
       "id": 2,
       "name": "Nhu Quynh",
       "phone": "05305854943",
       "email": "ngngocnhuquynh0104@gmail.com",
-      "password": "123123"
+      "password": "123123",
+      "isAdmin": true,
     }
   ],
   "transactions": [
