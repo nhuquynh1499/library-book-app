@@ -6,17 +6,7 @@ const authRoute = require("./routes/auth.route");
 const middlewareTransaction = require("./middlewares/transaction.middleware");
 const middlewareAuth = require("./middlewares/auth.middleware");
 const cookieParser = require('cookie-parser');
-const db = require('./db');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const myPlaintextPassword = '123123';
 
-var users = db.get('users').value();
-
-for (var user of users) {
-  var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-  db.get('users').find({ id: user.id}).assign({ password: hash }).write();
-}
 
 
 const app = express();
