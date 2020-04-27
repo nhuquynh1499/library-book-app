@@ -16,7 +16,7 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieParser('abc1244'));
 
 app.set('views', './views');
 app.set('view engine', 'pug');

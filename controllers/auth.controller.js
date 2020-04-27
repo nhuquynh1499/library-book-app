@@ -42,6 +42,8 @@ module.exports.postLogin = (req, res, next) => {
       value: req.body
     });
   }
-  res.cookie("userId", user.id);
+  res.cookie("userId", user.id, {
+    signed: true
+  });
   res.redirect("/transactions");
 };
