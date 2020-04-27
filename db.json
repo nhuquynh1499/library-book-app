@@ -22,7 +22,7 @@
       "name": "Ngo Minh",
       "phone": "0123123123",
       "email": "ngo.minh@coders-x.com",
-      "password": "4297f44b13955235245b2497399d7a93",
+      "password": "$2b$10$sH30UZsKz6fQE5Mdlx9c.eEyKxsfIdjTeNnAlCtkqmB94X1PnriGu",
       "isAdmin": false
     },
     {
@@ -30,7 +30,7 @@
       "name": "Thinh Pham",
       "phone": "4305854943",
       "email": "pham.thinh@coders-x.com",
-      "password": "4297f44b13955235245b2497399d7a93",
+      "password": "$2b$10$apNKdNICFTtlWr0fFitd7uzjoBAK4GPDpZ5VZeMmUtjzUYgfw7Usu",
       "isAdmin": false
     },
     {
@@ -38,7 +38,7 @@
       "name": "Nhu Quynh",
       "phone": "05305854943",
       "email": "ngngocnhuquynh0104@gmail.com",
-      "password": "4297f44b13955235245b2497399d7a93",
+      "password": "$2b$10$enyqcULv6jqIJOEwzrsKI.3Dllnx5XhPgLzsStkEeILC547/4PNx.",
       "isAdmin": true
     }
   ],

@@ -15,8 +15,7 @@ var users = db.get('users').value();
 
 for (var user of users) {
   var hash = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-  db.get('users').find({ id: user.id}).assign({ phone: req.body.phone })
-  .write();
+  db.get('users').find({ id: user.id}).assign({ password: hash }).write();
 }
 
 
