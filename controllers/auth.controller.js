@@ -2,7 +2,6 @@ const db = require("../db");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const md5 = require("md5");
-const sgMail = require("@sendgrid/mail");
 
 module.exports.login = (req, res) => {
   if (!req.cookies.wrongLoginCount) {
@@ -13,24 +12,31 @@ module.exports.login = (req, res) => {
 
 module.exports.postLogin = (req, res, next) => {
   if (parseInt(req.cookies.wrongLoginCount) >= 3) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    const msg = {
-      to: "nguyenngocnhuquynh.141999@gmail.com",
-      from: "ngngocnhuquynh0104@gmail.com",
-      subject: "Xác minh email để đăng nhập",
-      text: "Vui lòng xác minh email của bạn để đăng nhệp vào hệ thống",
-      html: "<strong>and easy to do anywhere, even with Node.js</strong>"
-    };
-    sgMail.send(msg).then(
-      () => {},
-      error => {
-        console.error(error);
-
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
+    var helper = require("sendgrid").mail;
+    var fromEmail = new helper.Email("test@example.com");
+    var toEmail = new helper.Email("test@example.com");
+    var subject = "Sending with SendGrid is Fun";
+    var content = new helper.Content(
+      "text/plain",
+      "and easy to do anywhere, even with Node.js"
     );
+    var mail = new helper.Mail(fromEmail, subject, toEmail, content);
+
+    var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
+    var request = sg.emptyRequest({
+      method: "POST",
+      path: "/v3/mail/send",
+      body: mail.toJSON()
+    });
+
+    sg.API(request, function(error, response) {
+      if (error) {
+        console.log("Error response received");
+      }
+      console.log(response.statusCode);
+      console.log(response.body);
+      console.log(response.headers);
+    });
     res.render("auth/login", {
       errors: ["You logged in wrongly too many times. Please check your mail!"],
       isSendMail: true
