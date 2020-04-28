@@ -14,6 +14,7 @@ module.exports.postLogin = (req, res, next) => {
   if (parseInt(req.cookies.wrongLoginCount) > 4) {
     res.render("auth/login", {
       errors: ["You logged in wrongly too many times"],
+      isSendMail: true
     });
     return;
   }
