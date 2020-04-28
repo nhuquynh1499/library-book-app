@@ -15,11 +15,11 @@ module.exports.postLogin = (req, res, next) => {
   if (parseInt(req.cookies.wrongLoginCount) >= 3) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-      to: "ngngocnhuquynh0104@gmail.com",
-      from: "ngngocnhuquynh0104@gmail.com",
-      subject: "Sending with Twilio SendGrid is Fun",
-      text: "and easy to do anywhere, even with Node.js",
-      html: "<strong>and easy to do anywhere, even with Node.js</strong>"
+      to: req.body.email,
+      from: "nguyenngocnhuquynh.141999@gmail.com",
+      subject: "Cảnh báo đăng nhập",
+      text: "Ai đó đang đăng nhập vào tài khoản của bạn",
+      html: "<strong>Ai đó đang đăng nhập vào tài khoản của bạn</strong>"
     };
     //ES6
     sgMail.send(msg).then(
@@ -33,7 +33,7 @@ module.exports.postLogin = (req, res, next) => {
       }
     );
     res.render("auth/login", {
-      errors: ["You logged in wrongly too many times. Please check your mail!"],
+      errors: ["You logged in wrongly too many times."],
       isSendMail: true
     });
     return;
