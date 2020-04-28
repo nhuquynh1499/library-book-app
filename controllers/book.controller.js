@@ -1,9 +1,18 @@
 const db = require('../db');
 
 module.exports.index = (req, res) => {
+  var page = parseInt(req.query.page) || 1; // n - số thứ tự trang.
+  var perPage = 8; // x - số lượng sản phẩm trong 1 trang.
+
+  var start = (page - 1) * perPage;
+  var end = page * perPage;
+
+  var numberOfPages = Math.ceil(db.get('books').value().length / 8);
+  var books = db.get('books').value().slice(start, end);
   res.render('books/index', {
-    books: db.get('books').value()
-  });
+    books: books,
+    numberOfPages: numberOfPages
+  })
 }
 
 module.exports.create = (req, res) => {

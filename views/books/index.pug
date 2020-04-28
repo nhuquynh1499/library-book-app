@@ -15,4 +15,11 @@ block content
             p.card-text= book.description
             a.btn.btn-primary.mr-3(href="/books/" + book.id + "/delete") Delete
             a.btn.btn-primary(href="/books/" + book.id + "/update") Update
+            
+  nav(aria-label='Page navigation example')
+    - var page = 1;
+    ul.pagination.justify-content-center
+      while page <= numberOfPages
+        li.page-item
+          a.page-link(href='/books?page=' + page)= page++
 
