@@ -1,4 +1,5 @@
-module.exports.postCreate = (req, res)=> {
+module.exports.postCreate = (req, res, next)=> {
+  console.log(req.body.name);
   var name = req.body.name;
   var error = '';
   if (name.length > 30) {
@@ -8,5 +9,5 @@ module.exports.postCreate = (req, res)=> {
   })
     return;
   }
-  
+  next();
 }

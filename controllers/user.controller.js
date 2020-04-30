@@ -13,8 +13,6 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
-  var file = req.files.avatar;
-  console.log(file);
   db.get("users")
     .push({
       id: db.get("users").value().length,
