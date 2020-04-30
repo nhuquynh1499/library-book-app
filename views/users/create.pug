@@ -6,11 +6,14 @@ block content
   if error
     .alert.alert-danger= error
   
-  form(method="POST", action="/users/create")
+  form(method="POST", action="/users/create", enctype="multipart/form-data")
     .form-group
       label(for="name") Name: 
       input.form-control(type="text", name="name")
     .form-group
       label(for="phone") Phone: 
       input.form-control(type="text", name="phone")
+    .form-group
+      label(for='avatar') Avatar
+      input#avatar.form-control-file(type='file', name='avatar')
     button.btn.btn-primary Create
