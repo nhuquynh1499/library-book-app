@@ -1,4 +1,5 @@
 const db = require("../db");
+var cloudinary = require("cloudinary").v2;
 
 module.exports.index = (req, res) => {
   res.render("users/index", {
