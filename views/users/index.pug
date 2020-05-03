@@ -7,12 +7,15 @@ block content
     tr
       th Name
       th Phone
+      th Avatar
       th
       th
     each user in users
       tr
         td= user.name
         td= user.phone
+        td
+          img(src=user.avatar)
         td 
           a(href="/users/" + user.id + "/delete") Delete
         td 

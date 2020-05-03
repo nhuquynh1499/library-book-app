@@ -145,6 +145,18 @@
       "email": "ngngocnhuquynh0104@gmail.com",
       "password": "$2b$10$enyqcULv6jqIJOEwzrsKI.3Dllnx5XhPgLzsStkEeILC547/4PNx.",
       "isAdmin": true
+    },
+    {
+      "id": 3,
+      "name": "Lu Minh Thong",
+      "phone": "123435465758",
+      "isAdmin": false
+    },
+    {
+      "id": 4,
+      "name": "Lu Minh Thong",
+      "phone": "4305854943",
+      "isAdmin": false
     }
   ],
   "transactions": [
