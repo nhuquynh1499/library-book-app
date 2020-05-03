@@ -3,7 +3,9 @@ extends ../layouts/common.pug
 block content  
   h1 Update a book
 
-  form(method="POST", action="/books/" + book.id + "/update")
+  form(method="POST", action="/books/" + book.id + "/update", enctype="multipart/form-data")
+    if (book.cover)
+        img(src=book.cover, width='32')
     .form-group
       span Title: 
       span= book.title
@@ -12,5 +14,8 @@ block content
       input.form-control(type="text", name="title")
     .form-group
       label(for="description") Description: 
-      span= book.description
+      p= book.description
+    .form-group
+      label(for='cover') Sửa cover
+      input#avatar.form-control-file(type='file', name='cover')
     button.btn.btn-primary Update

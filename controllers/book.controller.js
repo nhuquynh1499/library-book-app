@@ -44,9 +44,11 @@ module.exports.update = (req, res) => {
 }
 
 module.exports.postUpdate = (req, res) => {
+  console.log(req.file);
+  //q.body.avatar = req.file.path
   db.get('books')
   .find({ id: parseInt(req.params.id) })
-  .assign({ title: req.body.title })
+  .assign(req.body)
   .write();
   res.redirect('/books');
 }
