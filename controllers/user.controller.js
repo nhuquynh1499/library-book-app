@@ -1,5 +1,16 @@
 const db = require("../db");
 var cloudinary = require("cloudinary").v2;
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function(req, file, cb) {
+    console.log(file)
+    cb(null, file.originalname)
+  }
+})
 
 module.exports.index = (req, res) => {
   res.render("users/index", {
@@ -14,8 +25,6 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
-  var file = req.body.avatar;
-  console.log(file);
   db.get("users")
     .push({
       id: db.get("users").value().length,
