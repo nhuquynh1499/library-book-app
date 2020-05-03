@@ -16,9 +16,9 @@ block content
         td= user.phone
         td
           if(!user.avatar)
-            img(src=user.avatar, width='32')
+            img(src="https://loremflickr.com/320/240", width='32')
           else
-            img(src=)
+            img(src=user.avatar, width='32')
         td 
           a(href="/users/" + user.id + "/delete") Delete
         td 
