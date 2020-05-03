@@ -4,8 +4,7 @@ block content
   h1 Update a book
 
   form(method="POST", action="/books/" + book.id + "/update", enctype="multipart/form-data")
-    if (book.cover)
-        img(src=book.cover, width='32')
+    img(src='/' + book.image)
     .form-group
       span Title: 
       span= book.title
@@ -16,6 +15,6 @@ block content
       label(for="description") Description: 
       p= book.description
     .form-group
-      label(for='cover') Sửa cover
-      input#avatar.form-control-file(type='file', name='cover')
+      label(for='image') Sửa image
+      input#avatar.form-control-file(type='file', name='image')
     button.btn.btn-primary Update

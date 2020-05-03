@@ -44,8 +44,7 @@ module.exports.update = (req, res) => {
 }
 
 module.exports.postUpdate = (req, res) => {
-  console.log(req.file);
-  //q.body.avatar = req.file.path
+  req.body.image = req.file.path.split('/').slice(1).join('/');
   db.get('books')
   .find({ id: parseInt(req.params.id) })
   .assign(req.body)

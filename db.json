@@ -2,9 +2,10 @@
   "books": [
     {
       "id": 1,
-      "image": "https://loremflickr.com/320/240",
-      "title": "Verrico",
-      "description": "sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci"
+      "image": "uploads/6639517e9e780ad0d46264367ef4feea",
+      "title": "ABC",
+      "description": "sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci",
+      "cover": "uploads/6c42dc605640ee5c08b1bb3bd014f33d"
     },
     {
       "id": 2,
