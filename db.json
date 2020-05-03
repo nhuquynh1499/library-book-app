@@ -145,6 +145,9 @@
       "email": "ngngocnhuquynh0104@gmail.com",
       "password": "$2b$10$enyqcULv6jqIJOEwzrsKI.3Dllnx5XhPgLzsStkEeILC547/4PNx.",
       "isAdmin": true
+    },
+    {
+      "id": 3
     }
   ],
   "transactions": [
