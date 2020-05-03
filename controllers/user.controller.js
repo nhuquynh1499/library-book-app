@@ -21,15 +21,7 @@ module.exports.postCreate = async (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
   var path = req.file.path;
-  var file = await cloudinary.uploader.upload(path, function(err, image) {
-    if (err) 
-      return res.send(err);
-    //remove file from server
-    const fs = require("fs");
-    fs.unlinkSync(path);
-    // return image details
-    res.json(image);
-  });
+  var file = await cloudinary.uploader.upload(path);
   db.get("users")
     .push({
       id: db.get("users").value().length,
