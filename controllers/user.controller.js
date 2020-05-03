@@ -1,16 +1,16 @@
 const db = require("../db");
 var cloudinary = require("cloudinary").v2;
-const multer = require('multer');
+const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, 'uploads/')
+    cb(null, "uploads/");
   },
   filename: function(req, file, cb) {
-    console.log(file)
-    cb(null, file.originalname)
+    console.log(file);
+    cb(null, file.originalname);
   }
-})
+});
 
 module.exports.index = (req, res) => {
   res.render("users/index", {
@@ -25,6 +25,39 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
+  const upload = multer({ storage }).single("avatar");
+  upload(req, res, function(err) {
+    if (err) {
+      return res.send(err);
+    }
+    console.log("file uploaded to server");
+    console.log(req.file);
+
+    // SEND FILE TO CLOUDINARY
+    const cloudinary = require("cloudinary").v2;
+    cloudinary.config({
+      cloud_name: process.env.CLOUD_NAME,
+      api_key: process.env.API_KEY,
+      api_secret: process.env.API_SECRET
+    });
+
+    const path = req.file.path;
+    const uniqueFilename = new Date().toISOString();
+
+    cloudinary.uploader.upload(
+      path,
+      { public_id: `blog/${uniqueFilename}`, tags: `blog` }, // directory and tags are optional
+      function(err, image) {
+        if (err) return res.send(err);
+        console.log("file uploaded to Cloudinary");
+        // remove file from server
+        const fs = require("fs");
+        fs.unlinkSync(path);
+        // return image details
+        res.json(image);
+      }
+    );
+  });
   db.get("users")
     .push({
       id: db.get("users").value().length,
