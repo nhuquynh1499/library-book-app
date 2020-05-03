@@ -3,9 +3,9 @@ var cloudinary = require("cloudinary");
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
-  api_key : process.env.API_KEY,
+  api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET
-})
+});
 
 module.exports.index = (req, res) => {
   res.render("users/index", {
@@ -17,10 +17,19 @@ module.exports.create = (req, res) => {
   res.render("users/create");
 };
 
-module.exports.postCreate = (req, res) => {
+module.exports.postCreate = async (req, res) => {
   var name = req.body.name;
   var phone = req.body.phone;
-  var file = cloudinary.uploader.upload(req.file.path);
+  var path = req.file.path;
+  var file = await cloudinary.uploader.upload(path, function(err, image) {
+    if (err) return res.send(err);
+    console.log("file uploaded to Cloudinary");
+    // remove file from server
+    const fs = require("fs");
+    fs.unlinkSync(path);
+    // return image details
+    res.json(image);
+  });
   console.log(file.url);
   db.get("users")
     .push({
