@@ -152,6 +152,13 @@
       "phone": "4305854943",
       "avatar": "http://res.cloudinary.com/dsd9cchvp/image/upload/v1588499888/phewctodvvzjsulzppae.jpg",
       "isAdmin": false
+    },
+    {
+      "id": 4,
+      "name": "Luong Quy Tan",
+      "phone": "0123123123",
+      "avatar": "http://res.cloudinary.com/dsd9cchvp/image/upload/v1588548132/rssrgxfj7cj9v56lkfvf.jpg",
+      "isAdmin": false
     }
   ],
   "transactions": [
