@@ -147,57 +147,10 @@
       "isAdmin": true
     },
     {
-      "id": 3,
-      "name": "Lu Minh Thong",
-      "phone": "123435465758",
-      "isAdmin": false
-    },
-    {
-      "id": 4,
+      "id": 12,
       "name": "Lu Minh Thong",
       "phone": "4305854943",
-      "isAdmin": false
-    },
-    {
-      "id": 5,
-      "name": "Lu Minh Thong",
-      "phone": "4305854943",
-      "isAdmin": false
-    },
-    {
-      "id": 6,
-      "name": "Lu Minh Thong",
-      "phone": "123435465758",
-      "isAdmin": false
-    },
-    {
-      "id": 7,
-      "name": "Lu Minh Thong",
-      "phone": "4305854943",
-      "isAdmin": false
-    },
-    {
-      "id": 8,
-      "name": "Lu Minh Thong",
-      "phone": "123435465758",
-      "isAdmin": false
-    },
-    {
-      "id": 9,
-      "name": "Lu Minh Thong",
-      "phone": "4305854943",
-      "isAdmin": false
-    },
-    {
-      "id": 10,
-      "name": "Lu Minh Thong",
-      "phone": "4305854943",
-      "isAdmin": false
-    },
-    {
-      "id": 11,
-      "name": "Lu Minh Thong",
-      "phone": "4305854943",
+      "avatar": "http://res.cloudinary.com/dsd9cchvp/image/upload/v1588499888/phewctodvvzjsulzppae.jpg",
       "isAdmin": false
     }
   ],
