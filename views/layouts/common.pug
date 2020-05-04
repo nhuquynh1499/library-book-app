@@ -16,5 +16,8 @@ html
             a.nav-link(href='/books') Books
           li.nav-item
             a.nav-link(href='/transactions') Transactions
+          li.nav-item
+            a.nav-link(href='/cart') Cart 
+              span= '(' + numberInCart + ')'
     .container.pt-5
       block content
