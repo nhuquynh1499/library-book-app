@@ -1,4 +1,5 @@
 const db = require('../db');
+const shortId = require('shortid');
 
 module.exports.index = (req, res) => {
   var user = db.get('users').find({id: parseInt(req.signedCookies.userId)}).value();
@@ -35,10 +36,9 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var user = req.body.userSelect;
   var book = req.body.bookSelect;
-  console.log(user, book);
-  console.log(req.body.userSelect, req.body.bookSelect);
+  var id = shortId.generate();
   db.get('transactions').push({
-    id: db.get('transactions').value().length,
+    id: id,
     userId: db.get('users').find({ name: user }).value().id,
     bookId: db.get('books').find({ title: book }).value().id,
     isComplete: false

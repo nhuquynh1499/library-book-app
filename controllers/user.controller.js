@@ -1,5 +1,6 @@
 const db = require("../db");
 var cloudinary = require("cloudinary");
+const shortId = require("shortid");
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -22,9 +23,10 @@ module.exports.postCreate = async (req, res) => {
   var phone = req.body.phone;
   var path = req.file.path;
   var file = await cloudinary.uploader.upload(path);
+  var id = shortId.generate();
   db.get("users")
     .push({
-      id: db.get("users").value().length,
+      id: id,
       name: name,
       phone: phone,
       avatar: file.url,

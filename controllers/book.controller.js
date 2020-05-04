@@ -1,4 +1,5 @@
 const db = require('../db');
+const shortId = require('shortid');
 
 module.exports.index = (req, res) => {
   var page = parseInt(req.query.page) || 1; // n - số thứ tự trang.
@@ -22,8 +23,9 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var title = req.body.title;
   var description = req.body.description;
+  var id = shortId.generate();
   db.get('books').push({
-    id: db.get('books').value().length,
+    id: id,
     title: title,
     description: description
   }).write()
