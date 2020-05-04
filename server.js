@@ -3,8 +3,12 @@ const bookRoute = require("./routes/book.route");
 const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
 const authRoute = require("./routes/auth.route");
+const cartRoute = require('./routes/cart.route');
+
 const middlewareTransaction = require("./middlewares/transaction.middleware");
 const middlewareAuth = require("./middlewares/auth.middleware");
+const sessionMiddleware = require('./middlewares/session.middleware');
+
 const cookieParser = require('cookie-parser');
 
 
@@ -40,6 +44,7 @@ app.use('/books', bookRoute);
 app.use('/users', userRoute);
 app.use('/transactions', middlewareAuth.requireAuth, middlewareTransaction.complete, transactionRoute);
 app.use('/auth', authRoute);
+app.use('/cart', cartRoute);
 
 
 // listen for requests :)

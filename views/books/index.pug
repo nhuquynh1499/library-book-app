@@ -11,10 +11,13 @@ block content
         .card
           img.card-img-top(src=book.image)
           .card-body
-            h5.card-title= book.title
+            .d-flex.justify-content-between.align-items-center.mb-3.mt-3
+              h5.card-title= book.title
+              a.btn.btn-warning(href="/cart/add/" + book.id) Add to cart
             p.card-text= book.description
             a.btn.btn-primary.mr-3(href="/books/" + book.id + "/delete") Delete
             a.btn.btn-primary(href="/books/" + book.id + "/update") Update
+            
             
   nav(aria-label='Page navigation example')
     - var page = 1;
