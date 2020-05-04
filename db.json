@@ -2,16 +2,16 @@
   "books": [
     {
       "id": 1,
-      "image": "uploads/6639517e9e780ad0d46264367ef4feea",
-      "title": "ABC",
-      "description": "sapien varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci",
+      "image": "uploads/ce276ea15e783011d503dfb553048bf6",
+      "title": "Harry Potter",
+      "description": "The main story arc concerns Harry's struggle against Lord Voldemort, a dark wizard who intends to become immortal, overthrow the wizard governing body known as the Ministry of Magic and subjugate all wizards and Muggles.",
       "cover": "uploads/6c42dc605640ee5c08b1bb3bd014f33d"
     },
     {
       "id": 2,
-      "image": "https://loremflickr.com/320/240",
-      "title": "McTurk",
-      "description": "consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi"
+      "image": "uploads/df7db11633915acc4a283a927ab053db",
+      "title": "Doraemon",
+      "description": "Doraemon is the name of a robot cat that came from the future to help a boy named Nobita Nobi. Doraemon is about the life of Nobita Nobi. In a typical story Doramon uses a gadget to solve a problem for Nobita, but Nobita goes too far and ends up being punished and learning a lesson."
     },
     {
       "id": 3,
