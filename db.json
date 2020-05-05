@@ -183,5 +183,13 @@
       "isComplete": false
     }
   ],
-  "sessions": []
+  "sessions": [
+    {
+      "id": "-B0GObvmN",
+      "cart": [
+        null,
+        1
+      ]
+    }
+  ]
 }
