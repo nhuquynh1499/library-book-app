@@ -9,16 +9,11 @@ block content
       th Cover
       th Description
       th Delete
-    each user in session.cart
-      tr
-        td= user.name
-        td= user.phone
-        td
-          if(!user.avatar)
-            img(src="https://loremflickr.com/320/240", width='32')
-          else
-            img(src=user.avatar, width='32')
-        td 
-          a(href="/users/" + user.id + "/delete") Delete
-        td 
-          a(href="/users/" + user.id + "/update") Update
+    if (session)
+      each book in session.cart
+        tr
+          td= book.title
+          td= book.image
+          td= book.description
+          td 
+            a(href="/cart/" + book.id + "/delete") Delete

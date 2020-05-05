@@ -6,7 +6,8 @@ const db = low(adapter)
 
 db.defaults({ 
   books: [], 
-  users: []
+  users: [],
+  sessions: []
 }).write();
 
 module.exports = db;

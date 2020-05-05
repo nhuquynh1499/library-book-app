@@ -7,6 +7,6 @@ const router = express.Router();
 
 router.get('/', controller.index);
 
-router.get('/add/:productId', controller.addToCart);
+router.get('/add/:bookId', controller.addToCart);
 
 module.exports = router;

@@ -182,5 +182,6 @@
       "bookId": 1,
       "isComplete": false
     }
-  ]
+  ],
+  "sessions": []
 }
