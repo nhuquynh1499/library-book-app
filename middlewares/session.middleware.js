@@ -11,8 +11,8 @@ module.exports = (req, res, next) => {
   }
   
   var sessionId = req.signedCookies.sessionId;
-  var cart = db.get('sessions').find({ id: sessionId }).value();
-  res.locals.numberInCart = (!cart) ? 0 : Object.values(cart.cart).reduce((total, num) => {return total + num}, 0)
+  var session = db.get('sessions').find({ id: sessionId }).value();
+  res.locals.numberInCart = (!session) ? 0 : Object.values(session.cart).reduce((total, num) => {return total + num}, 0)
   
   next();
 }
