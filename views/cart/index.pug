@@ -9,7 +9,9 @@ block content
       th Cover
       th Description
       th Delete
+    - var id = 'Hello'
     each book in books
+      id = id + book.id + "+"
       tr
         td= book.title
         td
@@ -17,4 +19,5 @@ block content
         td= book.description
         td 
           a(href="/cart/" + book.id + "/delete") Delete
-  
+  .d-flex.justify-content-end
+    a.btn.btn-warning(href="/cart/brown?q=" + id) Brown
