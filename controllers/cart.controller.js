@@ -47,9 +47,10 @@ module.exports.addTransaction = (req, res, next) => {
       bookId: bookId,
       isComplete: false
     }).write();
-    db.get("sessions")
-    .remove({ id: req.signedCookies.sessionId})
-    .write();
+    // db.get("sessions")
+    // .remove({ id: req.signedCookies.sessionId})
+    // .write();
+    //res.clearCookie('sessionId');
   }
   
   res.redirect("/transactions");
