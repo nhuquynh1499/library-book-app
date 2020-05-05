@@ -12,7 +12,6 @@ module.exports = (req, res, next) => {
       .write();
   }
   
-  
   var sessionId = req.signedCookies.sessionId;
   var session = db.get('sessions').find({ id: sessionId }).value();
   if (session)

@@ -15,7 +15,7 @@ module.exports.index = (req, res) => {
     var bookId = item.bookId;
     lists.push({
       id: item.id,
-      user: db.get('users').find({ id: userId }).value().name,
+      user: db.get('users').find({ id: parseInt(userId) }).value().name,
       book: db.get('books').find({ id: bookId }).value().title,
       isComplete: item.isComplete
     })
