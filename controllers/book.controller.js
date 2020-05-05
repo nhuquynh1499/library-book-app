@@ -1,4 +1,5 @@
 const db = require('../db');
+const mongodb = require('../mongodb');
 const shortId = require('shortid');
 
 module.exports.index = (req, res) => {
@@ -8,7 +9,7 @@ module.exports.index = (req, res) => {
   var start = (page - 1) * perPage;
   var end = page * perPage;
 
-  var numberOfPages = Math.ceil(db.get('books').value().length / 8);
+  var numberOfPages = Math.ceil(mongodb.length / 8);
   var books = db.get('books').value().slice(start, end);
   res.render('books/index', {
     books: books,

@@ -22,7 +22,8 @@
     "pug": "^2.0.4",
     "sendgrid": "^5.2.3",
     "shortid": "^2.2.15",
-    "mongoose": "^5.9.12"
+    "mongoose": "^5.9.12",
+    "mongodb": "^3.5.7"
   },
   "engines": {
     "node": "12.x"
