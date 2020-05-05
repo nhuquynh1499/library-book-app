@@ -197,13 +197,13 @@
     {
       "id": 0,
       "userId": 0,
-      "bookId": 2,
+      "bookId": "dfc24df4-d9e1-4a88-b375-0589bfe3f1b7",
       "isComplete": true
     },
     {
       "id": 1,
       "userId": 1,
-      "bookId": 1,
+      "bookId": "43602aac-61a8-423b-9f3e-1180874daea4",
       "isComplete": false
     }
   ],

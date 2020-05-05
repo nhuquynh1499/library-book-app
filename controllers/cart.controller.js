@@ -36,5 +36,7 @@ module.exports.addToCart = (req, res, next) => {
 }
 
 module.exports.addTransaction = (req, res, next) => {
-  
+  var q = req.query.q;
+  var listBookId = q.split(' ');
+  console.log(listBookId);
 }

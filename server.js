@@ -45,7 +45,7 @@ app.use('/books', bookRoute);
 app.use('/users', userRoute);
 app.use('/transactions', middlewareAuth.requireAuth, middlewareTransaction.complete, transactionRoute);
 app.use('/auth', authRoute);
-app.use('/cart', cartRoute);
+app.use('/cart', middlewareAuth.requireAuth, cartRoute);
 
 
 // listen for requests :)
