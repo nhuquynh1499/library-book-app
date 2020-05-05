@@ -4,14 +4,16 @@ const userRoute = require("./routes/user.route");
 const transactionRoute = require("./routes/transaction.route");
 const authRoute = require("./routes/auth.route");
 const cartRoute = require('./routes/cart.route');
+const connect = require('./DB/connection');
 
 const middlewareTransaction = require("./middlewares/transaction.middleware");
 const middlewareAuth = require("./middlewares/auth.middleware");
 const sessionMiddleware = require('./middlewares/session.middleware');
 
+
 const cookieParser = require('cookie-parser');
 
-
+connect();
 
 const app = express();
 
