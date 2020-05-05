@@ -1,4 +1,5 @@
 const db = require('../db');
+const shortId = require('shortid');
 
 module.exports.index = (req, res, next) => {
   var sessionId = req.signedCookies.sessionId;
@@ -38,5 +39,18 @@ module.exports.addToCart = (req, res, next) => {
 module.exports.addTransaction = (req, res, next) => {
   var q = req.query.q;
   var listBookId = q.split(' ');
-  console.log(listBookId);
+  for (var bookId in listBookId) {
+    var id = shortId.generate();
+    db.get('transactions').push({
+      id: id,
+      userId: req.signedCookies.userId,
+      bookId: bookId,
+      isComplete: false
+    }).write();
+    db.get("sessions")
+    .remove({ id: req.signedCookies.sessionId})
+    .write();
+  }
+  
+  res.redirect("/transactions");
 }
