@@ -9,11 +9,12 @@ block content
       th Cover
       th Description
       th Delete
-    if (session)
-      each book in session.cart
-        tr
-          td= book.title
-          td= book.image
-          td= book.description
-          td 
-            a(href="/cart/" + book.id + "/delete") Delete
+    each book in books
+      tr
+        td= book.title
+        td
+          img(src=book.image, width="64")
+        td= book.description
+        td 
+          a(href="/cart/" + book.id + "/delete") Delete
+  

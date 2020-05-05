@@ -3,9 +3,11 @@ const db = require('../db');
 module.exports.index = (req, res, next) => {
   var sessionId = req.signedCookies.sessionId;
   var session = db.get('sessions').find({ id: sessionId }).value()
-  
+  var books = [];
+  for (var bookId in session.cart)
+    books.push(db.get('books').find({ id: bookId }).value());
   res.render('cart/index', {
-    
+    books: books
   });
 }
 
