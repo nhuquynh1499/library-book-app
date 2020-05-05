@@ -4,6 +4,7 @@ const shortId = require('shortid');
 module.exports.index = (req, res) => {
   var user = db.get('users').find({id: parseInt(req.signedCookies.userId)}).value();
   var transactions = []
+  console.log(transactions = db.get('transactions').value())
   if (user.isAdmin) {
      transactions = db.get('transactions').value();
   } else {

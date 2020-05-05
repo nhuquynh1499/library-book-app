@@ -40,6 +40,7 @@ module.exports.addTransaction = (req, res, next) => {
   var q = req.query.q;
   var listBookId = q.split(' ');
   for (var bookId in listBookId) {
+    console.log(bookId);
     var id = shortId.generate();
     db.get('transactions').push({
       id: id,
