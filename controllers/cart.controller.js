@@ -34,3 +34,7 @@ module.exports.addToCart = (req, res, next) => {
 
   res.redirect('/books');
 }
+
+module.exports.addTransaction = (req, res, next) => {
+  
+}

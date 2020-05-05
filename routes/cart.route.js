@@ -9,4 +9,6 @@ router.get('/', controller.index);
 
 router.get('/add/:bookId', controller.addToCart);
 
+router.get('/brown', controller.addTransaction);
+
 module.exports = router;
