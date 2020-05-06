@@ -27,12 +27,14 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var title = req.body.title;
   var description = req.body.description;
-  var id = shortId.generate();
-  db.get('books').push({
-    id: id,
+  console.log(req.file);
+  var image = req.file.path.split('/').slice(1).join('/');
+  var newBook = new bookModel({
     title: title,
-    description: description
-  }).write()
+    description: description,
+    image: image
+  });
+  newBook.save();
   res.redirect('/books');
 }
 

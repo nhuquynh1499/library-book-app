@@ -4,11 +4,14 @@ block content
 
   h1 Create a book
 
-  form(method="POST", action="/books/create")
+  form(method="POST", action="/books/create", enctype="multipart/form-data")
     .form-group
       label(for="title") Title: 
       input.form-control(type="text", name="title")
     .form-group
       label(for="description") Description: 
       input.form-control(type="text", name="description")
+    .form-group
+      label(for='image') Image
+      input#avatar.form-control-file(type='file', name='image')
     button.btn.btn-primary Create
