@@ -28,7 +28,6 @@ module.exports.create = (req, res) => {
 module.exports.postCreate = (req, res) => {
   var title = req.body.title;
   var description = req.body.description;
-  console.log(req.file);
   var image = req.file.path.split('/').slice(1).join('/');
   var newBook = new bookModel({
     title: title,
@@ -52,11 +51,10 @@ module.exports.update = (req, res) => {
 }
 
 module.exports.postUpdate = (req, res) => {
-  req.body.image = req.file.path.split('/').slice(1).join('/');
-  db.get('books')
-  .find({ id: parseInt(req.params.id) })
-  .assign(req.body)
-  .write();
+  var title = req.body.title;
+  var description = req.body.description;
+  var image = req.file.path.split('/').slice(1).join('/');
+  bookModel.findOneAndUpdate({ _id: req.params.id }, { $set: { title: title, description: description, image: image }})
   res.redirect('/books');
 }
 
