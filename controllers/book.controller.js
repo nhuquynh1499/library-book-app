@@ -3,17 +3,18 @@ const bookModel = require('../models/books');
 const shortId = require('shortid');
 
 module.exports.index = (req, res) => {
-  var page = parseInt(req.query.page) || 1; // n - số thứ tự trang.
-  var perPage = 8; // x - số lượng sản phẩm trong 1 trang.
+//   var page = parseInt(req.query.page) || 1; // n - số thứ tự trang.
+//   var perPage = 8; // x - số lượng sản phẩm trong 1 trang.
 
-  var start = (page - 1) * perPage;
-  var end = page * perPage;
+//   var start = (page - 1) * perPage;
+//   var end = page * perPage;
   
-  var numberOfPages = Math.ceil(bookModel.find().length / 8);
-  var books = bookModel.find().slice(start, end);
+//   var numberOfPages = Math.ceil(bookModel.find().length / 8);
+  var books = bookModel.find()
+  //.slice(start, end);
   res.render('books/index', {
-    books: books,
-    numberOfPages: numberOfPages
+    books: books
+    // numberOfPages: numberOfPages
   })
 }
 
