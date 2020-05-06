@@ -10,12 +10,11 @@ module.exports.index = async (req, res) => {
 //   var end = page * perPage;
   
 //   var numberOfPages = Math.ceil(bookModel.find().length / 8);
-  console.log("book")
   var books = await bookModel.findOne({});
   console.log(books);
   //.slice(start, end);
   res.render('books/index', {
-    books: []
+    books: books
     // numberOfPages: numberOfPages
   })
 }
