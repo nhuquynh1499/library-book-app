@@ -43,8 +43,9 @@ module.exports.delete = (req, res) => {
   res.redirect('/books');
 }
 
-module.exports.update = (req, res) => {
-  var book = bookModel.find({ _id: req.params.id });
+module.exports.update = async(req, res) => {
+  var book = await bookModel.find({ _id: req.params.id });
+  console.log(book);
   res.render('books/update', {
     book: book
   })
@@ -54,6 +55,7 @@ module.exports.postUpdate = (req, res) => {
   var title = req.body.title;
   var description = req.body.description;
   var image = req.file.path.split('/').slice(1).join('/');
+  console.log(req.params.id)
   bookModel.update(
     { _id: req.params.id }, 
     { 
@@ -63,7 +65,7 @@ module.exports.postUpdate = (req, res) => {
         image: image 
       }
     }
-  )
+  ).exec()
   res.redirect('/books');
 }
 
