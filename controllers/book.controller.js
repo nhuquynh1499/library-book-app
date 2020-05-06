@@ -2,7 +2,7 @@ const db = require('../db');
 const bookModel = require('../models/books');
 const shortId = require('shortid');
 
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
 //   var page = parseInt(req.query.page) || 1; // n - số thứ tự trang.
 //   var perPage = 8; // x - số lượng sản phẩm trong 1 trang.
 
@@ -10,7 +10,7 @@ module.exports.index = (req, res) => {
 //   var end = page * perPage;
   
 //   var numberOfPages = Math.ceil(bookModel.find().length / 8);
-  var books = bookModel.find()
+  var books = await bookModel.find()
   //.slice(start, end);
   res.render('books/index', {
     books: books

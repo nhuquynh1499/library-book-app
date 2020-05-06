@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URL = "mongodb+srv://" + process.env.mongodb_username + ":" + process.env.mongodb_password + "@learnexpresscodersx-kuqyf.gcp.mongodb.net/test?retryWrites=true&w=majority"
+const URL = "mongodb+srv://ngngocnhuquynh0104:CodersX1499@learnexpresscodersx-kuqyf.gcp.mongodb.net/test?retryWrites=true&w=majority"
 
 const connect = async () => {
   await mongoose.connect(URL,
@@ -10,5 +10,6 @@ const connect = async () => {
     }
   )
 }
+console.log('Connect ok')
 
 module.exports = connect;
