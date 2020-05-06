@@ -54,7 +54,16 @@ module.exports.postUpdate = (req, res) => {
   var title = req.body.title;
   var description = req.body.description;
   var image = req.file.path.split('/').slice(1).join('/');
-  bookModel.findOneAndUpdate({ _id: req.params.id }, { $set: { title: title, description: description, image: image }})
+  bookModel.update(
+    { _id: req.params.id }, 
+    { 
+      $set: { 
+        title: title, 
+        description: description, 
+        image: image 
+      }
+    }
+  )
   res.redirect('/books');
 }
 
