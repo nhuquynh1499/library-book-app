@@ -1,4 +1,5 @@
 const db = require('../db');
+const mongoose = require('mongoose');
 const bookModel = require('../models/books');
 const shortId = require('shortid');
 
@@ -39,8 +40,7 @@ module.exports.postCreate = (req, res) => {
 }
 
 module.exports.delete = (req, res) => {
-  var id = req.params.id;
-  db.get('books').remove({ id: parseInt(id) }).write();
+  bookModel.findByIdAndRemove(req.params.id);
   res.redirect('/books');
 }
 
