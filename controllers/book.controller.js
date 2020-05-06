@@ -40,12 +40,12 @@ module.exports.postCreate = (req, res) => {
 }
 
 module.exports.delete = (req, res) => {
-  bookModel.findByIdAndRemove(req.params.id);
+  bookModel.remove({ _id: req.params.id }).exec();
   res.redirect('/books');
 }
 
 module.exports.update = (req, res) => {
-  var book = db.get('books').find({ id: parseInt(req.params.id)}).value();
+  var book = bookModel.find({ _id: req.params.id });
   res.render('books/update', {
     book: book
   })
