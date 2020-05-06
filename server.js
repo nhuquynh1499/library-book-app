@@ -13,7 +13,9 @@ const sessionMiddleware = require('./middlewares/session.middleware');
 
 const cookieParser = require('cookie-parser');
 
-connect();
+connect().then(() => {
+  console.log('Connect success');
+}).catch(console.log);
 
 const app = express();
 

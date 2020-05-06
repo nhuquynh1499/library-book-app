@@ -10,6 +10,6 @@ const connect = async () => {
     }
   )
 }
-console.log('Connect ok')
+
 
 module.exports = connect;
