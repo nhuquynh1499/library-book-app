@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
     //   .write();
     await sessionModel.create({
       cookieId: sessionId,
-      cart: []
+      cart: {}
     });
   }
   
