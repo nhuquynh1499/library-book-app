@@ -9,7 +9,7 @@ block content
     each book in books
       .col.mb-4
         .card
-          img.card-img-top(src=book.image)
+          img.card-img-top.coverBook(src=book.image)
           .card-body
             .d-flex.justify-content-between.align-items-center.mb-3.mt-3
               h5.card-title= book.title

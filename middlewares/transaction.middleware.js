@@ -1,13 +1,10 @@
 //const db = require('../db');
 const transactionModel = require('../models/transactions');
 
-module.exports.complete = (req, res, next) => {
-  var transaction = 
-  if (db.get('transactions').find({ id: parseInt(req.params.id) }).value()){
-    db.get('transactions')
-    .find({ id: parseInt(req.params.id) })
-    .assign({ isComplete: true })
-    .write();
+module.exports.complete = async (req, res, next) => {
+  var transaction = await transactionModel.findOne({ _id: req.params.id });
+  if (transaction){
+    await transactionModel.update({ _id: req.params.id }, { isComplete: true }).exec();
   }
   next();
 }
