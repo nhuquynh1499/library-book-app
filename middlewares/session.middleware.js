@@ -12,9 +12,10 @@ module.exports = async (req, res, next) => {
     // db.get("sessions")
     //   .push({ id: sessionId })
     //   .write();
+    var cart = {};
     await sessionModel.create({
       cookieId: sessionId,
-      cart: {}
+      cart: cart
     });
   }
   
