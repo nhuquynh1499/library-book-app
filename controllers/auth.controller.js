@@ -50,8 +50,11 @@ module.exports.postLogin = async (req, res, next) => {
     });
     return;
   }
+  
+  console.log(user.password);
 
   var result = bcrypt.compareSync(req.body.password, user.password);
+  console.log(result);
   if (!result) {
     var wrongLoginCount = parseInt(req.cookies.wrongLoginCount);
     wrongLoginCount++;

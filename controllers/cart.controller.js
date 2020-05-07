@@ -1,4 +1,3 @@
-const db = require('../db');
 const shortId = require('shortid');
 const mongoose = require('mongoose');
 const sessionModel = require('../models/sessions');
@@ -18,7 +17,7 @@ module.exports.index = async (req, res, next) => {
   });
 }
 
-module.exports.addToCart = (req, res, next) => {
+module.exports.addToCart = async (req, res, next) => {
   var bookId = req.params.bookId;
   var sessionId = req.signedCookies.sessionId;
 
@@ -27,11 +26,12 @@ module.exports.addToCart = (req, res, next) => {
     return;
   }
 
-  var count = db
-    .get('sessions')
-    .find({ id: sessionId })
-    .get('cart.' + bookId, 0)
-    .value();
+  // var count = db
+  //   .get('sessions')
+  //   .find({ id: sessionId })
+  //   .get('cart.' + bookId, 0)
+  //   .value();
+  var count = await sessionModel.findOne({ _id: sessionId }).
 
   var sessions = db.get('sessions')
     .find({ id: sessionId })

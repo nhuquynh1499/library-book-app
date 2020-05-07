@@ -4,12 +4,12 @@ const userModel = require('../models/users')
 const bookModel = require('../models/books')
 
 module.exports.index = async (req, res) => {
-  var user = userModel.findOne({id: parseInt(req.signedCookies.userId)});
-  var transactions = []
+  var user = await userModel.findOne({ _id: req.signedCookies.userId });
+  var transactions = [];
   if (user.isAdmin) {
-     transactions = transactionModel.find();
+     transactions = await transactionModel.find();
   } else {
-     transactions = transactions.concat(transactionModel.find({ userId: user.id }));
+     transactions = await transactionModel.find({ userId: user.id });
   }
   var lists = [];
   for (var item of transactions) {
