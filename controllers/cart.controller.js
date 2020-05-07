@@ -1,12 +1,18 @@
 const db = require('../db');
 const shortId = require('shortid');
+const mongoose = require('mongoose');
+const sessionModel = require('../models/sessions');
+const userModel = require('../models/users')
+const bookModel = require('../models/books')
 
-module.exports.index = (req, res, next) => {
+module.exports.index = async (req, res, next) => {
   var sessionId = req.signedCookies.sessionId;
-  var session = db.get('sessions').find({ id: sessionId }).value()
+  var session = await sessionModel.find();
   var books = [];
-  for (var bookId in session.cart)
-    books.push(db.get('books').find({ id: bookId }).value());
+  for (var bookId in session.cart) {
+    var book = await bookModel.findOne({ _id: bookId });
+    books.push(book);
+  }
   res.render('cart/index', {
     books: books
   });
@@ -31,7 +37,6 @@ module.exports.addToCart = (req, res, next) => {
     .find({ id: sessionId })
     .set('cart.' + bookId, count + 1)
     .write();
-  console.log(db.get('sessions').find({ id: sessionId }).value())
 
   res.redirect('/books');
 }

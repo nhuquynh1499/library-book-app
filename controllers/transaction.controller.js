@@ -13,8 +13,8 @@ module.exports.index = async (req, res) => {
   }
   var lists = [];
   for (var item of transactions) {
-    var user = await userModel.findOne({ id: item.userId });
-    var book = await bookModel.findOne({ id: item.bookId });
+    var user = await userModel.findOne({ _id: item.userId });
+    var book = await bookModel.findOne({ _id: item.bookId });
     lists.push({
       id: item.id,
       user: user.name,
