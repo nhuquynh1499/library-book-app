@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 var transactionSchema = new mongoose.Schema({
   userId: String,
   bookId: String,
-  isComplete: String
+  isComplete: Boolean
 })
 
-module.exports = mongoose.model('Book', transactionSchema)
+module.exports = mongoose.model('Transaction', transactionSchema)
 

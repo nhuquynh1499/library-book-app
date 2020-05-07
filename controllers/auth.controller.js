@@ -1,8 +1,9 @@
-const db = require("../db");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const md5 = require("md5");
 const sgMail = require("@sendgrid/mail");
+const mongoose = require('mongoose');
+const userModel = require('../models/users');
 
 module.exports.login = (req, res) => {
   if (!req.cookies.wrongLoginCount) {
@@ -11,7 +12,7 @@ module.exports.login = (req, res) => {
   res.render("auth/login");
 };
 
-module.exports.postLogin = (req, res, next) => {
+module.exports.postLogin = async (req, res, next) => {
   if (parseInt(req.cookies.wrongLoginCount) >= 3) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
@@ -40,10 +41,7 @@ module.exports.postLogin = (req, res, next) => {
   }
   var email = req.body.email;
   var password = req.body.password;
-  var user = db
-    .get("users")
-    .find({ email: email })
-    .value();
+  var user = await userModel.findOne({ email: email});
 
   if (!user) {
     res.render("auth/login", {

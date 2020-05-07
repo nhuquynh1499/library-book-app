@@ -1,6 +1,4 @@
-const db = require("../db");
 var cloudinary = require("cloudinary");
-const shortId = require("shortid");
 const mongoose = require('mongoose');
 const userModel = require('../models/users');
 

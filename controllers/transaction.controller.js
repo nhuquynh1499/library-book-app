@@ -1,23 +1,26 @@
 const db = require('../db');
 const shortId = require('shortid');
+const mongoose = require('mongoose');
+const transactionModel = require('../models/transactions');
+const userModel = require('../models/users')
+const bookModel = require('../models/books')
 
-module.exports.index = (req, res) => {
-  var user = db.get('users').find({id: parseInt(req.signedCookies.userId)}).value();
+module.exports.index = async (req, res) => {
+  var user = userModel.findOne({id: parseInt(req.signedCookies.userId)});
   var transactions = []
-  console.log(transactions = db.get('transactions').value())
   if (user.isAdmin) {
-     transactions = db.get('transactions').value();
+     transactions = transactionModel.find();
   } else {
-     transactions = transactions.concat(db.get('transactions').find({ userId: user.id }).value());
+     transactions = transactions.concat(transactionModel.find({ userId: user.id }));
   }
   var lists = [];
   for (var item of transactions) {
-    var userId = item.userId;
-    var bookId = item.bookId;
+    var user = await userModel.findOne({ id: item.userId });
+    var book = await bookModel.findOne({ id: item.bookId });
     lists.push({
       id: item.id,
-      user: db.get('users').find({ id: parseInt(userId) }).value().name,
-      book: db.get('books').find({ id: bookId }).value().title,
+      user: user.name,
+      book: book.title,
       isComplete: item.isComplete
     })
   }
