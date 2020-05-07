@@ -3,11 +3,18 @@ extends ../layouts/common.pug
 block content
   h1 Update a user
 
-  form(method="POST", action="/users/" + user.id + "/update")
-    div
+  form(method="POST", action="/users/" + user.id + "/update", enctype="multipart/form-data")
+    img(src= user.avatar, width='320')
+    .form-group
       span Name: 
       span= user.name
-    div
+    .form-group
+      label(for="name") New name: 
+      input.form-control(type="text", name="name")
+    .form-group
       label(for="phone") Phone: 
-      input(type="text", name="phone")
+      input.form-control(type="text", name="phone")
+    .form-group
+      label(for='avatar') Change Avatar
+      input#avatar.form-control-file(type='file', name='avatar')
     button Update

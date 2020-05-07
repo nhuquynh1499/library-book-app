@@ -35,25 +35,30 @@ module.exports.postCreate = async (req, res) => {
 };
 
 module.exports.delete = async (req, res) => {
-  var id = req.params.id;
-  await userModel.remove({ _id: req.params.id }).exec()
+  await userModel.remove({ _id: req.params.id }).exec();
   res.redirect("/users");
 };
 
-module.exports.update = (req, res) => {
-  var user = db
-    .get("users")
-    .find({ id: parseInt(req.params.id) })
-    .value();
+module.exports.update = async (req, res) => {
+  var user = await userModel.findOne({ _id: req.params.id });
   res.render("users/update", {
     user: user
   });
 };
 
-module.exports.postUpdate = (req, res) => {
-  db.get("users")
-    .find({ id: parseInt(req.params.id) })
-    .assign({ phone: req.body.phone })
-    .write();
+module.exports.postUpdate = async (req, res) => {
+  var name = req.body.name;
+  var phone = req.body.phone;
+  var file = await cloudinary.uploader.upload(req.file.path);
+  await userModel.update(
+    { _id: req.params.id }, 
+    { 
+      $set: { 
+        name: name, 
+        phone: phone, 
+        avatar: file.url 
+      }
+    }
+  ).exec()
   res.redirect("/users");
 };
