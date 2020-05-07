@@ -21,13 +21,13 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.postCreate = async (req, res) => {
-  console.log(await cloudinary.uploader.upload(req.file.path))
+  var file = await cloudinary.uploader.upload(req.file.path);
   var newUser = new userModel({
     name: req.body.name,
     phone: req.body.phone,
     email: req.body.email,
     password: req.body.password,
-    avatar: await cloudinary.uploader.upload(req.file.path),
+    avatar: file.url,
     isAdmin: false
   })
   await newUser.save();
