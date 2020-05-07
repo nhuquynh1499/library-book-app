@@ -5,7 +5,8 @@ var userSchema = new mongoose.Schema({
   email: String,
   password: String,
   isAdmin: Boolean,
-  phone: String
+  phone: String,
+  avatar: String
 })
 
 module.exports = mongoose.model('User', userSchema)

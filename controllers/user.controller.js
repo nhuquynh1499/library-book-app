@@ -10,9 +10,9 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
   res.render("users/index", {
-    users: db.get("users").value()
+    users: await userModel.find()
   });
 };
 
@@ -21,20 +21,15 @@ module.exports.create = (req, res) => {
 };
 
 module.exports.postCreate = async (req, res) => {
-  var name = req.body.name;
+  var newUser = new userModel({
+    name = req.body.name;
   var phone = req.body.phone;
   var path = req.file.path;
+  var email = req.body.email;
+  var password = req.body.password;
   var file = await cloudinary.uploader.upload(path);
   var id = shortId.generate();
-  db.get("users")
-    .push({
-      id: id,
-      name: name,
-      phone: phone,
-      avatar: file.url,
-      isAdmin: false
-    })
-    .write();
+  
   res.redirect("/users");
 };
 
