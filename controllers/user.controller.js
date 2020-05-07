@@ -34,11 +34,9 @@ module.exports.postCreate = async (req, res) => {
   res.redirect("/users");
 };
 
-module.exports.delete = (req, res) => {
+module.exports.delete = async (req, res) => {
   var id = req.params.id;
-  db.get("users")
-    .remove({ id: parseInt(id) })
-    .write();
+  await userModel.remove({ _id: req.params.id }).exec()
   res.redirect("/users");
 };
 
