@@ -41,7 +41,8 @@ module.exports.addToCart = async (req, res, next) => {
     count = 1
   }
   console.log(count);
-  await sessionModel.updateOne({ cookieId: sessionId }, { 'cart.'+ bookId: count }).exec();
+  
+  await sessionModel.updateOne({ cookieId: sessionId }, { 'cart.${bookId}': count }).exec();
 
   // var sessions = db.get('sessions')
   //   .find({ id: sessionId })
