@@ -31,12 +31,14 @@ module.exports.addToCart = async (req, res, next) => {
   //   .find({ id: sessionId })
   //   .get('cart.' + bookId, 0)
   //   .value();
-  var count = await sessionModel.findOne({ cart})
+  var session = await sessionModel.findOne({ cookieId: sessionId });
+  var count = (bookId in session.cart) ? session.cart.bookId + 1 : 0;
+  await sessionModel.update({ cookieId: sessionId }, { cart.bookId: count }).exec();
 
-  var sessions = db.get('sessions')
-    .find({ id: sessionId })
-    .set('cart.' + bookId, count + 1)
-    .write();
+  // var sessions = db.get('sessions')
+  //   .find({ id: sessionId })
+  //   .set('cart.' + bookId, count + 1)
+  //   .write();
 
   res.redirect('/books');
 }
