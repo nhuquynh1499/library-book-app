@@ -1,30 +1,4 @@
 {
-  "transactions": [
-    {
-      "id": 0,
-      "userId": 0,
-      "bookId": "dfc24df4-d9e1-4a88-b375-0589bfe3f1b7",
-      "isComplete": true
-    },
-    {
-      "id": 1,
-      "userId": 1,
-      "bookId": "43602aac-61a8-423b-9f3e-1180874daea4",
-      "isComplete": false
-    },
-    {
-      "id": "7La7rH5x0",
-      "userId": "2",
-      "bookId": "43602aac-61a8-423b-9f3e-1180874daea4",
-      "isComplete": false
-    },
-    {
-      "id": "VUtJmDzizM",
-      "userId": "2",
-      "bookId": "a8cf52de-9575-43f2-8aaa-4ef85191a926",
-      "isComplete": false
-    }
-  ],
   "sessions": [
     {
       "id": "e6t1t_GSJ",
