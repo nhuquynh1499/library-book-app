@@ -1,5 +1,3 @@
-const db = require('../db');
-const shortId = require('shortid');
 const mongoose = require('mongoose');
 const transactionModel = require('../models/transactions');
 const userModel = require('../models/users')
@@ -30,21 +28,22 @@ module.exports.index = async (req, res) => {
   })
 }
 
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
+  var users = await userModel.find();
+  var books = await bookModel.find();
   res.render('transactions/create', {
-    users: db.get('users').value(),
-    books: db.get('books').value()
+    users: users,
+    books: books
   });
 }
 
-module.exports.postCreate = (req, res) => {
-  var user = req.body.userSelect;
-  var book = req.body.bookSelect;
-  var id = shortId.generate();
-  db.get('transactions').push({
-    id: id,
-    userId: db.get('users').find({ name: user }).value().id,
-    bookId: db.get('books').find({ title: book }).value().id,
+module.exports.postCreate = async (req, res) => {
+  var user = await userModel.findOne({ name: req.body.userSelect });
+  var book = await bookModel.findOne({ title: req.body.bookSelect });
+  
+  transactionModel.create({
+    userId: user.id,
+    bookId: book.id,
     isComplete: false
   }).write()
   res.redirect('/transactions');
