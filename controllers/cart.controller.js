@@ -31,7 +31,7 @@ module.exports.addToCart = async (req, res, next) => {
   //   .find({ id: sessionId })
   //   .get('cart.' + bookId, 0)
   //   .value();
-  var count = await sessionModel.findOne({ _id: sessionId }).
+  var count = await sessionModel.update({ _id: sessionId }, {}).exec();
 
   var sessions = db.get('sessions')
     .find({ id: sessionId })
