@@ -34,9 +34,11 @@ module.exports.addToCart = async (req, res, next) => {
   //   .value();
   var session = await sessionModel.findOne({ cookieId: sessionId });
   console.log(session);
-  if (session.cart === {}) {
-    console.log("1");
-    var count = (bookId in session.cart) ? session.cart.bookId + 1 : 1;
+  var cart = session.cart;
+  if (cart) {
+    var numberBook = "cart." + bookId;
+    console.log(numberBook);
+    var count = (bookId in cart) ? numberBook + 1 : 1;
   } else {
     count = 1
   }
