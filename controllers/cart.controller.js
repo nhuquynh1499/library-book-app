@@ -34,18 +34,35 @@ module.exports.addToCart = async (req, res, next) => {
   //   .value();
   var session = await sessionModel.findOne({ cookieId: sessionId });
   var count = 0;
+  
   if (session) {
+    // Trường hợp 1: BookId đã tồn tại trong giỏ hàng -> Tìm bookId rồi tăng số lượng.
     for (var i = 0; i < session.cart.length; i++) {
       if (session.cart[i].bookId === bookId) {
         count = session.cart[i].quantity + 1;
+        await sessionModel.updateOne({ 
+          cookieId: sessionId, 
+          "cart.booKId": bookId 
+        }, { 
+          $set: {
+            "cart.$.quantity": count
+          }
+        }).exec();
       }
     }
-  var item = {
+    // Trường hợp 2: BookId chưa có trong giỏ hàng
+    await sessionModel.updateOne({ 
+          cookieId: sessionId, 
+        }, { 
+          $set: {
+            "cart.$.bookId": bookId,
+            "cart.$.quantity": 1
+          }
+        }).exec();
     
   }
-  console.log(count);
   
-  await sessionModel.updateOne({ cookieId: sessionId }, { bookId : count }).exec();
+  
 
   // var sessions = db.get('sessions')
   //   .find({ id: sessionId })
