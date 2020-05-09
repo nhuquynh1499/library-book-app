@@ -33,6 +33,7 @@ module.exports.addToCart = async (req, res, next) => {
   //   .get('cart.' + bookId, 0)
   //   .value();
   var session = await sessionModel.findOne({ cookieId: sessionId });
+  console.log(session);
   var count = 0;
   
   if (session) {
@@ -40,26 +41,28 @@ module.exports.addToCart = async (req, res, next) => {
     for (var i = 0; i < session.cart.length; i++) {
       if (session.cart[i].bookId === bookId) {
         count = session.cart[i].quantity + 1;
-        await sessionModel.updateOne({ 
+        await sessionModel.update({ 
           cookieId: sessionId, 
-          "cart.booKId": bookId 
+          "cart.$.booKId": bookId 
         }, { 
           $set: {
             "cart.$.quantity": count
           }
         }).exec();
+        res.redirect('/books');
+        return;
       }
     }
     // Trường hợp 2: BookId chưa có trong giỏ hàng
-    await sessionModel.updateOne({ 
+    await sessionModel.update({ 
           cookieId: sessionId, 
         }, { 
-          $set: {
-            "cart.$.bookId": bookId,
-            "cart.$.quantity": 1
-          }
+          $push: { cart: {
+            "bookId": bookId,
+            "quantity": 1
+          }}
         }).exec();
-    
+    console.log("gì đó");
   }
   
   
