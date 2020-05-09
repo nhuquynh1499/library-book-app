@@ -7,12 +7,15 @@ const transactionModel = require('../models/transactions');
 
 module.exports.index = async (req, res, next) => {
   var sessionId = req.signedCookies.sessionId;
-  var session = await sessionModel.find();
+  var session = await sessionModel.findOne({ cookieId: sessionId });
   var books = [];
-  for (var bookId in session.cart) {
-    var book = await bookModel.findOne({ _id: bookId });
+  console.log(session.cart)
+  for (var item of session.cart) {
+    console.log(item);
+    var book = await bookModel.findOne({ _id: item.bookId });
     books.push(book);
   }
+  console.log(books);
   res.render('cart/index', {
     books: books
   });
