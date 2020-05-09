@@ -12,18 +12,18 @@ module.exports = async (req, res, next) => {
     // db.get("sessions")
     //   .push({ id: sessionId })
     //   .write();
-    var cart = {};
-    await sessionModel.create({
-      cookieId: sessionId,
-      cart: cart
-    });
+    var cart = [];
+    // await sessionModel.create({
+    //   cookieId: sessionId,
+    //   cart: cart
+    // });
   }
   
   var sessionId = req.signedCookies.sessionId;
   //var session = db.get('sessions').find({ id: sessionId }).value();
   var session = await sessionModel.findOne({ cookieId: sessionId });
   if (session)
-    res.locals.numberInCart = (!session.cart) ? 0 : Object.values(session.cart).reduce((total, num) => {return total + num}, 0)
+    res.locals.numberInCart = (!session.cart) ? 0 : (session.cart).reduce((total, item) => {return total + parseInt(item.quantity)}, 0)
   else 
     res.locals.numberInCart = 0;
   next();

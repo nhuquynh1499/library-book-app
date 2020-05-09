@@ -9,13 +9,10 @@ module.exports.index = async (req, res, next) => {
   var sessionId = req.signedCookies.sessionId;
   var session = await sessionModel.findOne({ cookieId: sessionId });
   var books = [];
-  console.log(session.cart)
   for (var item of session.cart) {
-    console.log(item);
     var book = await bookModel.findOne({ _id: item.bookId });
     books.push(book);
   }
-  console.log(books);
   res.render('cart/index', {
     books: books
   });
@@ -80,19 +77,28 @@ module.exports.addToCart = async (req, res, next) => {
 
 module.exports.addTransaction = async (req, res, next) => {
   var q = req.query.q;
+  var sessionId = req.signedCookies.sessionId;
   var listBookId = q.split(' ');
   for (var bookId of listBookId) {
     var id = shortId.generate();
-    await transactionModel.create({
+    var newTransaction = new transactionModel({
       userId: req.signedCookies.userId,
       bookId: bookId,
       isComplete: false
-    }).exec();
+    });
+    await newTransaction.save();
     // db.get("sessions")
     // .remove({ id: req.signedCookies.sessionId})
     // .write();
     //res.clearCookie('sessionId');
   }
+  await sessionModel.update({ 
+          cookieId: sessionId
+        }, { 
+          $set: {
+            cart: []
+          }
+        }).exec();
   
   res.redirect("/transactions");
 }
