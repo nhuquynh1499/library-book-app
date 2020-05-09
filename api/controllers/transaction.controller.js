@@ -23,5 +23,7 @@ module.exports.update = async (req, res, next) => {
 }
 
 module.exports.delete = async (req, res, next) => {
-  var transactions = await transactionModel.del
+  await transactionModel.remove({ _id: req.params.id }).exec();
+  var transactions = transactionModel.find();
+  res.json(transactions);
 }
